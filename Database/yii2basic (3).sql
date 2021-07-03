@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 06, 2021 at 09:26 AM
+-- Generation Time: Jul 03, 2021 at 05:08 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.8
 
@@ -101,6 +101,30 @@ INSERT INTO `jenis` (`id`, `nama_jenis`, `keterangan`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `jurusan`
+--
+
+CREATE TABLE `jurusan` (
+  `id_jurusan` int(11) NOT NULL,
+  `kode_jurusan` int(11) NOT NULL,
+  `nama_jurusan` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `jurusan`
+--
+
+INSERT INTO `jurusan` (`id_jurusan`, `kode_jurusan`, `nama_jurusan`) VALUES
+(1, 1001, 'Teknologi Informasi'),
+(2, 1002, 'Teknik Sipil'),
+(3, 1003, 'Teknik Elektro'),
+(4, 1004, 'Teknik Mesin'),
+(5, 1005, 'Bahasa Inggris'),
+(6, 1006, 'Akuntansi');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `karyawan`
 --
 
@@ -162,6 +186,31 @@ INSERT INTO `mahasiswa` (`id`, `nim`, `nama`, `jekel`, `id_prodi`, `email`, `ala
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `mahasiswaa`
+--
+
+CREATE TABLE `mahasiswaa` (
+  `id` int(11) NOT NULL,
+  `nim` varchar(20) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `tanggal_lahir` varchar(50) NOT NULL,
+  `jekel` char(1) NOT NULL,
+  `id_jurusan` int(11) NOT NULL,
+  `id_prodi` int(11) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `alamat` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `mahasiswaa`
+--
+
+INSERT INTO `mahasiswaa` (`id`, `nim`, `nama`, `tanggal_lahir`, `jekel`, `id_jurusan`, `id_prodi`, `email`, `alamat`) VALUES
+(1, '1911082031', 'Fitri Chairani', '28-12-2000', 'P', 1, 1, 'chairanifitri9@gmail.com', 'Bukittinggi');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `prodi`
 --
 
@@ -179,6 +228,32 @@ INSERT INTO `prodi` (`id`, `prodi`, `keterangan`) VALUES
 (1, 'Teknik Komputer', 'TK'),
 (2, 'Manajemen Informatika', 'MI'),
 (3, 'Teknologi Rekayasa Perangkat Lunak', 'TRPL');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `prodii`
+--
+
+CREATE TABLE `prodii` (
+  `id` int(11) NOT NULL,
+  `id_jurusan` int(11) NOT NULL,
+  `prodi` varchar(50) NOT NULL,
+  `keterangan` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `prodii`
+--
+
+INSERT INTO `prodii` (`id`, `id_jurusan`, `prodi`, `keterangan`) VALUES
+(1, 1, 'TRPL', 'D4-Teknologi Rekayasa Perangkat Lunak'),
+(2, 1, 'MI', 'D3-Manajemen Informatika'),
+(3, 1, 'TK', 'D3-Teknik Komputer'),
+(4, 2, 'PJJ', 'D4-Perancangan Jalan dan Jembatan'),
+(5, 2, 'PIR', 'D4-Perancangan Irigasi dan Rawa'),
+(6, 2, 'Teknik Sipil', 'D3-Teknik Sipil'),
+(7, 2, 'MRK', 'D4-Manajemen Rekayasa Konstruksi');
 
 -- --------------------------------------------------------
 
@@ -228,6 +303,12 @@ ALTER TABLE `jenis`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `jurusan`
+--
+ALTER TABLE `jurusan`
+  ADD PRIMARY KEY (`id_jurusan`);
+
+--
 -- Indexes for table `karyawan`
 --
 ALTER TABLE `karyawan`
@@ -240,10 +321,25 @@ ALTER TABLE `mahasiswa`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `mahasiswaa`
+--
+ALTER TABLE `mahasiswaa`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_jurusan` (`id_jurusan`),
+  ADD KEY `id_prodi` (`id_prodi`);
+
+--
 -- Indexes for table `prodi`
 --
 ALTER TABLE `prodi`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `prodii`
+--
+ALTER TABLE `prodii`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_jurusan` (`id_jurusan`);
 
 --
 -- Indexes for table `supplier`
@@ -274,6 +370,12 @@ ALTER TABLE `jenis`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `jurusan`
+--
+ALTER TABLE `jurusan`
+  MODIFY `id_jurusan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `karyawan`
 --
 ALTER TABLE `karyawan`
@@ -286,10 +388,22 @@ ALTER TABLE `mahasiswa`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
+-- AUTO_INCREMENT for table `mahasiswaa`
+--
+ALTER TABLE `mahasiswaa`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `prodi`
 --
 ALTER TABLE `prodi`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `prodii`
+--
+ALTER TABLE `prodii`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `supplier`
@@ -307,6 +421,19 @@ ALTER TABLE `supplier`
 ALTER TABLE `barang`
   ADD CONSTRAINT `barang_jenis` FOREIGN KEY (`id_jenis`) REFERENCES `jenis` (`id`),
   ADD CONSTRAINT `barang_supplier` FOREIGN KEY (`id_supplier`) REFERENCES `supplier` (`id`);
+
+--
+-- Constraints for table `mahasiswaa`
+--
+ALTER TABLE `mahasiswaa`
+  ADD CONSTRAINT `mahasiswaa_ibfk_1` FOREIGN KEY (`id_jurusan`) REFERENCES `jurusan` (`id_jurusan`),
+  ADD CONSTRAINT `mahasiswaa_ibfk_2` FOREIGN KEY (`id_prodi`) REFERENCES `prodii` (`id`);
+
+--
+-- Constraints for table `prodii`
+--
+ALTER TABLE `prodii`
+  ADD CONSTRAINT `prodii_ibfk_1` FOREIGN KEY (`id_jurusan`) REFERENCES `jurusan` (`id_jurusan`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
