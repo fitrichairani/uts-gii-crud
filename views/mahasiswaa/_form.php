@@ -30,6 +30,8 @@ use kartik\depdrop\DepDrop;
     ]
     ]);?>
 
+
+
    <?= $form->field($model, 'jekel')->radioList(array('L'=>'Laki-Laki','P'=>'Perempuan'))->label('Jenis Kelamin') ?>
 
     
@@ -40,9 +42,9 @@ use kartik\depdrop\DepDrop;
     <?=
         $form->field($model, 'id_prodi')->widget(DepDrop::classname(),[
             'data' => Prodii::getProdiList($model->id_jurusan,$model->nim),
-            'options' => ['id' => 'prodi','prompt' => 'select Prodi...'],
+            'options' => ['id' => 'prodi','prompt' => 'select Jurusan...'],
             'pluginOptions' => [
-                'depends' => ['jurusanID'],
+                'depends' => ['jurusan'],
                 'placeholder' => 'select prodi...',
                 'url' => Url::to(['mahasiswa/subcat'])
             ]

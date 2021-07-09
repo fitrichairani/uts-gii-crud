@@ -68,7 +68,7 @@ class MahasiswaaController extends Controller
         $model = new Mahasiswaa();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-             $model->tgl_lahir = \Yii::$app->formatter->asDate($model->tgl_lahir, 'yyy-MM-dd');
+             $model->tanggal_lahir = \Yii::$app->formatter->asDate($model->tanggal_lahir, 'yyy-MM-dd');
             echo '<pre>';
             print_r($model);
             die();

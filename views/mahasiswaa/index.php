@@ -32,7 +32,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'tanggal_lahir',
             'jekel',
             'id_jurusan',
+            'jurusan.kode_jurusan',
+            'jurusan.nama_jurusan',
             'id_prodi',
+           // 'prodi.prodi',
+           // 'prodi.keterangan',
             'email:email',
             'alamat',
 

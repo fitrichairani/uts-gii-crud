@@ -42,13 +42,11 @@ AppAsset::register($this);
             ['label' => 'Fitur', 'url' => ['/site/fitur']],
             ['label' => 'About', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
-			//['label' => 'Mahasiswa', 'url' => ['/mahasiswa']],
-			//['label' => 'Prodi', 'url' => ['/prodi']],
-			//['label' => 'Barang', 'url' => ['/barang']],
-			//['label' => 'Jenis Barang', 'url' => ['/jenis']],
-			//['label' => 'Supplier Barang', 'url' => ['/supplier']],
-            //['label' => 'Karyawan', 'url' => ['/karyawan']],
-            //['label' => 'Divisi', 'url' => ['/divisi']],
+			['label' => 'Mahasiswa', 'url' => ['/mahasiswa']],
+			['label' => 'Prodi', 'url' => ['/prodi']],
+			['label' => 'Barang', 'url' => ['/barang']],
+			['label' => 'Jenis Barang', 'url' => ['/jenis']],
+			['label' => 'Supplier Barang', 'url' => ['/supplier']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
