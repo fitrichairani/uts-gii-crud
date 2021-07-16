@@ -46,7 +46,7 @@ use kartik\depdrop\DepDrop;
             'pluginOptions' => [
                 'depends' => ['jurusan'],
                 'placeholder' => 'select prodi...',
-                'url' => Url::to(['mahasiswa/subcat'])
+                'url' => Url::to(['mahasiswaa/subcat'])
             ]
         ])
     ?>
